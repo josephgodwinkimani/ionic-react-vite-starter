@@ -1,0 +1,59 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+        
+    - name: Install Android SDK
+      uses: android-actions/setup-android@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+          node-version: 16
+          cache: 'npm'
+          architecture: 'x64' # optional, x64 or x86. If not specified, x64 will be used by default     
+
+
+    - name: Install Ionic
+      run: npm install -g @ionic/cli@6.20.8
+
+    - name: Install app dependencies
+      run: npm install
+
+    - name: Convert Windows line endings to Linux from the gradlew file
+      run: sudo apt update && sudo apt install dos2unix && cd android && dos2unix ./gradlew && cd ..
+
+    - name: Make ./gradlew command executable
+      run: cd android && chmod +x ./gradlew && cd ..
+
+    - name: Build Ionic assets
+      run: CI=false && vite build
+
+    - name: Copy generated assets from Ionic to Capacitor Android platform
+      run: npx cap copy android && npx ionic cap sync android --no-build
+
+    - name: Generate APK
+      run: cd android && ./gradlew assembleDebug && cd ..
+
+    - name: Upload generated APK to Github
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-dev
+        path: android/app/build/outputs/apk/debug/app-debug.apk    

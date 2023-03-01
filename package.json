@@ -1,7 +1,7 @@
 {
   "name": "ionic-react-vite",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -44,6 +44,7 @@
     "typescript": "^4.6.4",
     "prettier": "^2.7.1",
     "rimraf": "^4.1.2",
-    "vite": "^4.1.0"
+    "vite": "^4.1.0",
+		"vite-plugin-pwa": "^0.14.4"
   }
 }

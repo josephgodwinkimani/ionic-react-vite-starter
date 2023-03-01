@@ -34,8 +34,8 @@
     "lint": "eslint src/**/*.{js,jsx}",
     "fix": "eslint src/**/*.{js,jsx} --fix",
     "format": "prettier src/**/*.{js,jsx} --write",
-		"android": "capacitor open android",
-		"ios": "capacitor open ios",
+    "android": "capacitor open android",
+    "ios": "capacitor open ios",
     "browser.test": "wdio run ./wdio.browser.conf.js",
     "android.app": "wdio config/wdio.android.app.conf.ts",
     "android.browser": "wdio config/wdio.android.browser.conf.ts",
@@ -72,6 +72,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
     "@capacitor/cli": "4.6.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -104,10 +106,18 @@
     "husky": "^8.0.3",
     "prettier": "^2.7.1",
     "rimraf": "^4.1.2",
+    "sharp": "^0.31.3",
+    "svgo": "^3.0.2",
     "ts-node": "^10.8.0",
     "typescript": "^4.6.4",
     "vite": "^4.1.0",
+    "vite-plugin-image-optimizer": "^1.1.0",
     "vite-plugin-pwa": "^0.14.4",
+    "vite-plugin-svgr": "^2.4.0",
     "wdio-json-reporter": "^3.0.0"
+  },
+  "engines": {
+    "npm": ">=8.19.3 <8.19.4",
+    "node": ">=16.9.0 <17.0.0"
   }
 }

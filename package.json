@@ -30,7 +30,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rimraf build && rimraf node_modules",
-    "sync": "vite build && ionic capacitor sync android --no-build",
+    "sync": "vite build && ionic cap sync --inline --source-map --no-build",
     "lint": "eslint src/**/*.{js,jsx}",
     "fix": "eslint src/**/*.{js,jsx} --fix",
     "format": "prettier src/**/*.{js,jsx} --write",

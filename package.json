@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/josephgodwinkimani/ionic-react-vite-starter#README.MD",
   "scripts": {
+		"start": "npm install && husky install",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
